@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './loginpage.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -21,15 +22,16 @@ function Tabs({ activeTab, handleTabChange }) {
   );
 }
 
-function Login({ handleLogin, setMessage, setMessageColor }) {
+function Login({ setMessage, setMessageColor }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleFormSubmit = () => {
     if (username === 'root' && password === '12345678') {
       setMessage('Logged In Successfully');
       setMessageColor('green');
-      handleLogin(); // Trigger the login functionality
+      navigate('/home');
     } else {
       setMessage('Invalid Username and Password');
       setMessageColor('red');
@@ -57,21 +59,27 @@ function Login({ handleLogin, setMessage, setMessageColor }) {
       </p>
       <div className="social-icons">
         <span>
-          <i className="fab fa-facebook-f"></i> {/* Social icon for Facebook */}
+          <i className="fab fa-facebook-f"></i>
         </span>
         <span>
-          <i className="fab fa-google"></i> {/* Social icon for Google */}
+          <i className="fab fa-google"></i>
         </span>
         <span>
-          <i className="fab fa-twitter"></i> {/* Social icon for Twitter */}
+          <i className="fab fa-twitter"></i>
         </span>
+        {/* Add more social media icons as needed */}
       </div>
     </div>
   );
 }
 
-function Register({ handleRegister }) {
-  // Your Register component remains unchanged
+function Register() {
+  return (
+    <div className="form">
+      <h2>Register</h2>
+      {/* Include registration form fields and logic */}
+    </div>
+  );
 }
 
 function LoginPage() {
@@ -79,36 +87,18 @@ function LoginPage() {
   const [message, setMessage] = useState('');
   const [messageColor, setMessageColor] = useState('');
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
-
-  const handleLogin = () => {
-    // Perform additional actions after successful login if needed
-  };
-
-  const handleRegister = () => {
-    // Handle registration functionality
-  };
-
-  const handleSocialLogin = (provider) => {
-    // Handle social media login/registration
-    console.log(`Logging in/registering with ${provider}`);
-  };
+  const handleTabChange = (tab) => setActiveTab(tab);
 
   return (
     <div className="container">
       <Tabs activeTab={activeTab} handleTabChange={handleTabChange} />
       {activeTab === 'login' && (
         <Login
-          handleLogin={handleLogin}
           setMessage={setMessage}
           setMessageColor={setMessageColor}
         />
       )}
-      {activeTab === 'register' && (
-        <Register handleRegister={handleRegister} handleSocialLogin={handleSocialLogin} />
-      )}
+      {activeTab === 'register' && <Register />}
       <p style={{ color: messageColor }}>{message}</p>
     </div>
   );
