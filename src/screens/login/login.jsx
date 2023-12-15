@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import './loginpage.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+// Function to set the authentication token in local storage
+const login = () => {
+  localStorage.setItem("auth_token", "my_auth_token_here");
+};
+
 function Tabs({ activeTab, handleTabChange }) {
   return (
     <div className="tabs">
-     
+      {/* Your tab content */}
     </div>
   );
 }
@@ -20,6 +25,7 @@ function Login({ setMessage, setMessageColor }) {
     if (username === 'root' && password === '12345678') {
       setMessage('Logged In Successfully');
       setMessageColor('green');
+      login(); // Set authentication token upon successful login
       navigate('/home');
     } else {
       setMessage('Invalid Username and Password');
@@ -30,6 +36,7 @@ function Login({ setMessage, setMessageColor }) {
   return (
     <div className="form">
       <h2>Login</h2>
+      {/* Input fields for username and password */}
       <input
         type="text"
         placeholder="Username"
@@ -42,11 +49,12 @@ function Login({ setMessage, setMessageColor }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      {/* Login button */}
       <button
         onClick={handleFormSubmit}
         style={{
           display: 'block',
-          margin: '0 auto',
+          margin: '20px auto', // Adjust the margin to center the button vertically
           padding: '10px 20px',
           fontSize: '16px',
           cursor: 'pointer',
@@ -54,15 +62,18 @@ function Login({ setMessage, setMessageColor }) {
           borderRadius: '5px',
           outline: 'none',
           backgroundColor: 'blue',
-          color: 'white',
+          color: 'white'    
         }}
       >
         Login
       </button>
+      {/* Forgot password link */}
       <p>
         Forgot password? <a href="#!">Reset here</a>
       </p>
+      {/* Social media icons */}
       <div className="social-icons" style={{ textAlign: 'center' }}>
+        {/* Add your social media icons */}
         <span>
           <i className="fab fa-facebook-f"></i>
         </span>
@@ -87,13 +98,16 @@ function LoginPage() {
 
   return (
     <div className="container">
+      {/* Render tabs */}
       <Tabs activeTab={activeTab} handleTabChange={handleTabChange} />
+      {/* Render the Login component */}
       {activeTab === 'login' && (
         <Login
           setMessage={setMessage}
           setMessageColor={setMessageColor}
         />
       )}
+      {/* Display login status message */}
       <p style={{ color: messageColor }}>{message}</p>
     </div>
   );

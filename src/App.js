@@ -1,20 +1,42 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AllRoutes } from "./router/router"; 
-import LoginPage from "./screens/login/login";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import PrivateRoute from "./router/privateRoute";
+// import PrivateRoute from "./router/privateRoute";
+import { AllRoutes } from "./router/router";
+import Login from "./screens/login/login";
 import Home from "./screens/home/home";
 import AddTodo from "./screens/Addtodo/additems";
 
+
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={"/"} element={<LoginPage />} />
-        <Route path={AllRoutes.home} element={<Home />} />
-        <Route path={AllRoutes.additems} element={<AddTodo />} /> 
-      </Routes>
-    </BrowserRouter>
-  );
+  return <BrowserRouter>
+    <Routes>
+
+      {/* Home Route */}
+      <Route path={"/"} element={<Login />} />
+
+      {/* Login Route */}
+      <Route path={AllRoutes.login} element={<Login />} />
+
+      {/* Home Route */}
+      <Route path={AllRoutes.home} element={
+        <PrivateRoute path={AllRoutes.home}>
+          <Home />
+        </PrivateRoute>
+      } />
+
+      {/* Profile Route */}
+      <Route path={AllRoutes.additems} element={<PrivateRoute path={AllRoutes.additems}>
+        <AddTodo />
+      </PrivateRoute>} />
+
+     
+
+    </Routes>
+  </BrowserRouter>;
 }
 
 export default App;

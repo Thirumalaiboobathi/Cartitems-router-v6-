@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { AppRoutes } from './routes';
+import { AllRoutes } from "./router";
 
 const PrivateRoute = (props) => {
 
@@ -17,7 +17,7 @@ const PrivateRoute = (props) => {
         return props.children
     } else {
         return <Navigate
-            to={AppRoutes.login}
+            to={AllRoutes.login}
             state={{ from: props.path }}
         />
     }
