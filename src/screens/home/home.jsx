@@ -1,53 +1,46 @@
-import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AddTodo from '../Addtodo/additems';
 
-function Home() {
-  const [items, setItems] = useState([]);
-  const [showAddTodo, setShowAddTodo] = useState(false);
+const Home = () => {
+  const [todos, setTodos] = useState([]);
   const navigate = useNavigate();
 
-  const addItemToList = (newItem) => {
-    setItems([...items, newItem]);
+  useEffect(() => {
+    const todosFromStorage = JSON.parse(localStorage.getItem('todos')) || [];
+    setTodos(todosFromStorage);
+  }, []);
+
+  const handleAddTodo = () => {
+    navigate('/additems');
+  };
+
+  const handleLogout = () => {
+    // Perform any logout actions (e.g., clear user session, reset local storage)
+    // For example: localStorage.clear();
+    navigate('/');
   };
 
   return (
-    <div className="container mt-4">
-      <div className="row">
-        <div className="col-md-8">
-          <Card>
-            <Card.Body>
-              <ListGroup variant="flush">
-                {items.length === 0 ? (
-                  <ListGroup.Item>No items yet</ListGroup.Item>
-                ) : (
-                  items.map((item, index) => (
-                    <ListGroup.Item key={index}>{item}</ListGroup.Item>
-                  ))
-                )}
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="col-md-4">
-          {!showAddTodo && (
-            <button
-              className="btn btn-primary mt-2"
-              onClick={() => {
-                setShowAddTodo(true);
-                navigate('/additems');
-              }}
-            >
-              Add Items
-            </button>
-          )}
-          {showAddTodo && <AddTodo addItemToList={addItemToList} />}
-        </div>
-      </div>
+    <div className="container">
+      <h1 style={{ display: 'flex', alignItems: 'center' }}>
+        <button onClick={handleLogout} style={{ marginRight: '10px' }}>Logout</button>
+        Todo List
+      </h1>
+      <ul>
+        {todos.length === 0 ? (
+          <li>No items yet</li>
+        ) : (
+          todos.map((todo, index) => (
+            <li key={index}>
+              Title: {todo.title}, Due Date: {todo.date}
+            </li>
+          ))
+        )}
+      </ul>
+      <hr />
+      <button onClick={handleAddTodo}>Add Todo</button>
     </div>
   );
-}
+};
 
 export default Home;

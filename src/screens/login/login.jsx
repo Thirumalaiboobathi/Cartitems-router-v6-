@@ -6,18 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function Tabs({ activeTab, handleTabChange }) {
   return (
     <div className="tabs">
-      <button
-        className={activeTab === 'login' ? 'active' : ''}
-        onClick={() => handleTabChange('login')}
-      >
-        Login
-      </button>
-      <button
-        className={activeTab === 'register' ? 'active' : ''}
-        onClick={() => handleTabChange('register')}
-      >
-        Register
-      </button>
+     
     </div>
   );
 }
@@ -53,11 +42,27 @@ function Login({ setMessage, setMessageColor }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleFormSubmit}>Login</button>
+      <button
+        onClick={handleFormSubmit}
+        style={{
+          display: 'block',
+          margin: '0 auto',
+          padding: '10px 20px',
+          fontSize: '16px',
+          cursor: 'pointer',
+          border: 'none',
+          borderRadius: '5px',
+          outline: 'none',
+          backgroundColor: 'blue',
+          color: 'white',
+        }}
+      >
+        Login
+      </button>
       <p>
         Forgot password? <a href="#!">Reset here</a>
       </p>
-      <div className="social-icons">
+      <div className="social-icons" style={{ textAlign: 'center' }}>
         <span>
           <i className="fab fa-facebook-f"></i>
         </span>
@@ -69,15 +74,6 @@ function Login({ setMessage, setMessageColor }) {
         </span>
         {/* Add more social media icons as needed */}
       </div>
-    </div>
-  );
-}
-
-function Register() {
-  return (
-    <div className="form">
-      <h2>Register</h2>
-      {/* Include registration form fields and logic */}
     </div>
   );
 }
@@ -98,7 +94,6 @@ function LoginPage() {
           setMessageColor={setMessageColor}
         />
       )}
-      {activeTab === 'register' && <Register />}
       <p style={{ color: messageColor }}>{message}</p>
     </div>
   );
