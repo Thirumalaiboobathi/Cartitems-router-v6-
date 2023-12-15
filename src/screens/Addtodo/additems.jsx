@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './addtodo.css'
 
 const AddTodo = () => {
   const [title, setTitle] = useState('');
@@ -20,30 +21,32 @@ const AddTodo = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Add Todo</h1>
-      <button onClick={handleGoBack}>Go Back</button>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="date">Due Date:</label>
-          <input
-            type="date"
-            id="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </div>
-        <button type="submit">Add Todo</button>
-      </form>
+    <div className="outer-container">
+      <div className="container" style={{ border: '2px solid #ccc', padding: '20px', borderRadius: '10px', maxWidth: '400px', margin: '0 auto' }}>
+        <h1 style={{ color: 'blue' }}>Add Todo</h1>
+        <button onClick={handleGoBack} style={{ backgroundColor: 'red', color: 'white' }}>Go Back</button>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="date">Due Date:</label>
+            <input
+              type="date"
+              id="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+          <button type="submit" style={{ backgroundColor: 'green', color: 'white' }}>Add Todo</button>
+        </form>
+      </div>
     </div>
   );
 };

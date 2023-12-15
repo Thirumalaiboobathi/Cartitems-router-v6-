@@ -22,26 +22,28 @@ const Home = () => {
 
   return (
     <div className="container">
-      <header style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
-        <h1 style={{ margin: '0', fontSize: '24px' }}>Todo List</h1>
-        <br></br>
-        <button onClick={handleLogout} style={{ marginLeft: '50px', padding: '8px 16px' }}>Logout</button>
+      <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1 style={{ margin: '0', fontSize: '24px', color: 'blue' }}>Todo List</h1>
+        
       </header>
       <div>
         {todos.length === 0 ? (
-          <p style={{ fontStyle: 'italic' }}>No items yet</p>
+          <p style={{ fontStyle: 'italic', color: 'gray' }}>No items yet</p>
         ) : (
           <ul style={{ listStyle: 'none', padding: '0' }}>
             {todos.map((todo, index) => (
-              <li key={index} style={{ marginBottom: '10px', padding: '10px', border: '1px solid #ccc' }}>
-                <strong>Title:</strong> {todo.title}, <strong>Due Date:</strong> {todo.date}
+              <li key={index} style={{ marginBottom: '10px', padding: '10px', border: '1px solid #ccc', backgroundColor: index % 2 === 0 ? '#f5f5f5' : '#e0e0e0' }}>
+                <strong style={{ color: 'green' }}>Title:</strong> {todo.title}, <strong style={{ color: 'blue' }}>Due Date:</strong> {todo.date}
               </li>
             ))}
           </ul>
         )}
+        <div>
+          <button onClick={handleAddTodo} style={{ marginRight: '30px', padding: '8px 16px', fontSize: '16px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px' }}>Add Todo</button>
+          <button onClick={handleLogout} style={{ padding: '8px 16px', fontSize: '16px', backgroundColor: 'red', color: 'white', border: 'none', borderRadius: '5px',marginLeft:'90px' }}>Logout</button>
+        </div>
       </div>
-      <hr style={{ margin: '20px 0' }} />
-      <button onClick={handleAddTodo} style={{ padding: '8px 16px', fontSize: '16px' }}>Add Todo</button>
+      <hr style={{ margin: '20px 0', borderColor: 'blue' }} />
     </div>
   );
 };

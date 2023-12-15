@@ -74,14 +74,14 @@ function Login({ setMessage, setMessageColor }) {
       {/* Social media icons */}
       <div className="social-icons" style={{ textAlign: 'center' }}>
         {/* Add your social media icons */}
-        <span>
-          <i className="fab fa-facebook-f"></i>
+        <span style={{ margin: '5px', borderRadius: '50%', padding: '8px', backgroundColor: 'lightgray' }}>
+          <i className="fab fa-facebook-f" style={{ color: '#3b5998' }}></i>
         </span>
-        <span>
-          <i className="fab fa-google"></i>
+        <span style={{ margin: '5px', borderRadius: '50%', padding: '8px', backgroundColor: 'lightgray' }}>
+          <i className="fab fa-google" style={{ color: '#db4437' }}></i>
         </span>
-        <span>
-          <i className="fab fa-twitter"></i>
+        <span style={{ margin: '5px', borderRadius: '50%', padding: '8px', backgroundColor: 'lightgray' }}>
+          <i className="fab fa-twitter" style={{ color: '#00acee' }}></i>
         </span>
         {/* Add more social media icons as needed */}
       </div>
