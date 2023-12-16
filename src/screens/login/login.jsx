@@ -12,6 +12,8 @@ function Tabs({ activeTab, handleTabChange }) {
   return (
     <div className="tabs">
       {/* Your tab content */}
+      <button onClick={() => handleTabChange('login')}>Login</button>
+      <button onClick={() => handleTabChange('register')}>Register</button>
     </div>
   );
 }
