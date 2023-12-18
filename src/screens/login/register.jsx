@@ -1,69 +1,60 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Register({ setMessage, setMessageColor }) {
-  const [name, setName] = useState('');
+const Registration = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const navigate = useNavigate();
 
-  const handleFormSubmit = () => {
-    // Perform validation or additional checks here before registering the user
-    // For simplicity, just setting a message and navigating to home for demonstration purposes
-    setMessage('Registered Successfully');
-    setMessageColor('green');
-    navigate('/home'); // Navigate to home page after registration
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Handle registration logic - for demonstration, just navigate back to login
+    navigate('/login');
   };
 
   return (
     <div className="form">
       <h2>Register</h2>
-      {/* Input fields for registration */}
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Phone Number"
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
-      />
-      {/* Registration button */}
-      <button
-        onClick={handleFormSubmit}
-        style={{
-          display: 'block',
-          margin: '20px auto',
-          padding: '10px 20px',
-          fontSize: '16px',
-          cursor: 'pointer',
-          border: 'none',
-          borderRadius: '5px',
-          outline: 'none',
-          backgroundColor: 'green',
-          color: 'white'
-        }}
-      >
-        Register
-      </button>
+      <form onSubmit={handleFormSubmit}>
+        {/* Input fields for registration */}
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Mobile Number"
+          value={mobileNumber}
+          onChange={(e) => setMobileNumber(e.target.value)}
+        />
+        <input
+          type="date"
+          placeholder="Date of Birth"
+          value={dateOfBirth}
+          onChange={(e) => setDateOfBirth(e.target.value)}
+        />
+        {/* Register button */}
+        <button type="submit">Register</button>
+      </form>
     </div>
   );
-}
+};
 
-export default Register;
+export default Registration;

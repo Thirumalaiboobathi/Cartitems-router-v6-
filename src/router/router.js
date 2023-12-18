@@ -1,6 +1,7 @@
 export const AllRoutes = {
     login: "/login",
     home: "/home",
-    additems: "/additems"
+    additems: "/additems",
+    register: "/register"
   };
   
