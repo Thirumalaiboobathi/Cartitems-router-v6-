@@ -7,7 +7,7 @@ const GoogleButton = () => {
         className="g-signin"
         data-width="240"
         data-height="50"
-        style={{ backgroundColor: 'white', color: 'black' }}
+        style={{ backgroundColor: 'white', color: 'black',border: '2px solid black' }}
       >
         <span className="g-signin__icon">
           {/* Add the Google icon here */}

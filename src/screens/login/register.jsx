@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GoogleButton from './GoogleButton';
 
 const Registration = () => {
   const [username, setUsername] = useState('');
@@ -52,6 +53,8 @@ const Registration = () => {
         />
         {/* Register button */}
         <button type="submit">Register</button>
+
+        <GoogleButton />
       </form>
     </div>
   );
